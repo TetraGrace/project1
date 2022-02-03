@@ -1,9 +1,11 @@
 package project1
 
+import scala.collection.immutable.ListMap
+
 object MenuStuff {
   class Menu(options:Map[Int,String]) {
     //map of all the map options. The int is in the position of the menu option starting at 0. The string is the return value for when its selected
-    val menuOptions = options;
+    val menuOptions = ListMap(options.toSeq.sortBy(_._1):_*);
 
     private def printMenuLine(): Unit = {
       //prints a line that goes on the top of bottom of a menu
@@ -32,6 +34,9 @@ object MenuStuff {
       println("+-Options----------------------------------------+")
       menuOptions.foreach(m => ({printMenuOption(m._1,m._2)}))
       printMenuLine()
+    }
+    def selectOption(cho: Int):String = {
+      return menuOptions(cho);
     }
   }
 }
